@@ -48,7 +48,8 @@ def main():
         for obj1 in asteroid:
             for obj2 in shot:
                 if (obj1.collisions(obj2)):
-                    return
+                    obj1.kill()
+                    obj2.kill()
 
 
         
