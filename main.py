@@ -12,6 +12,7 @@ def main():
 
     screen = pygame.display.set_mode(size=(SCREEN_WIDTH,SCREEN_HEIGHT))
 
+    shot = pygame.sprite.Group()
     asteroid = pygame.sprite.Group()
     updateable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
@@ -19,11 +20,10 @@ def main():
     Player.containers = (updateable, drawable) # type: ignore
     Asteroid.containers = (asteroid, updateable, drawable) # type: ignore
     AsteroidField.containers = (updateable) # type: ignore
+    Shot.containers = (shot, updateable, drawable) # type: ignore
 
     player = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
     asteroid_field = AsteroidField()
-
-    
     
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
@@ -45,6 +45,10 @@ def main():
             if (obj.collisions(player)):
                 print("Game Over")
                 sys.exit()
+        for obj1 in asteroid:
+            for obj2 in shot:
+                if (obj1.collisions(obj2)):
+                    return
 
 
         
