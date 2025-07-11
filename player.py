@@ -4,10 +4,10 @@ from constants import PLAYER_TURN_SPEED
 from constants import PLAYER_SPEED
 
 class Player(CircleShape):
-    rotation = 0.0
 
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
+        self.rotation = 0
     
     # in the player class
     def triangle(self):
