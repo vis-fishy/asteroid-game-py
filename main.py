@@ -7,6 +7,11 @@ from player import *
 from asteroids import *
 from asteroid_field import *
 
+def copy_without(item, group):
+    copy = pygame.sprite.Group.copy(group)
+    copy.remove(item)
+    return copy
+
 def main():
     pygame.init()
 
@@ -48,11 +53,9 @@ def main():
         for obj1 in asteroid:
             for obj2 in shot:
                 if (obj1.collisions(obj2)):
-                    obj1.kill()
+                    obj1.split()
                     obj2.kill()
-
-
-        
+                    
         pygame.display.flip()
         dt = clock.tick(60)/1000
 
