@@ -4,6 +4,7 @@ from constants import PLAYER_TURN_SPEED
 from constants import PLAYER_SPEED
 from constants import SHOT_RADIUS
 from constants import PLAYER_SHOT_SPEED
+from constants import PLAYER_SHOT_COOLDOWN
 
 class Player(CircleShape):
 
@@ -49,7 +50,7 @@ class Player(CircleShape):
     def shot(self):
         new_shot = Shot(self.position.x, self.position.y) # type: ignore
         new_shot.velocity = pygame.Vector2(0,1).rotate(self.rotation) * PLAYER_SHOT_SPEED
-        self.timer = 0.3
+        self.timer = PLAYER_SHOT_COOLDOWN
 
 class Shot(CircleShape):
     def __init__(self, x, y):

@@ -15,6 +15,8 @@ def copy_without(item, group):
 def main():
     pygame.init()
 
+    score = 0
+
     screen = pygame.display.set_mode(size=(SCREEN_WIDTH,SCREEN_HEIGHT))
 
     shot = pygame.sprite.Group()
@@ -49,13 +51,15 @@ def main():
         for obj in asteroid:
             if (obj.collisions(player)):
                 print("Game Over")
+                print(f"Score: {score}")
                 sys.exit()
         for obj1 in asteroid:
             for obj2 in shot:
                 if (obj1.collisions(obj2)):
                     obj1.split()
                     obj2.kill()
-                    
+                    score += 1
+        
         pygame.display.flip()
         dt = clock.tick(60)/1000
 
